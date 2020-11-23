@@ -30,6 +30,23 @@ const routes = [
     path: '/ArtistList',
     name: 'ArtistList',
     component: () => import('@/views/ArtistList')
+  },
+  {
+    path: '/SearchPage',
+    name: 'SearchPage',
+    component: () => import('@/views/SearchPage'),
+    // children: [
+    //   {
+    //     path: 'SongsList',
+    //     name: 'SongsList',
+    //     component: () => import('@/views/SearchPage/SongsonSearch')
+    //   }
+    // ]
+  },
+  {
+    path: '/ListDetail',
+    name: 'ListDetail',
+    component: () => import('@/components/PlayerContent/ListDetail')
   }
 ]
 

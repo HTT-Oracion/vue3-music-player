@@ -1,10 +1,27 @@
 <template>
-  <div class="player-btn">播放音乐</div>
+  <div class="player-btn">
+    <div class="play-music">
+      <audio src="" controls></audio>
+    </div>
+  </div>
+  <!-- <Aplayer
+    autoplay
+    :music="{
+      title: 'secret base~君がくれたもの~',
+      artist: 'Silent Siren',
+      src: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3',
+      pic: 'https://moeplayer.b0.upaiyun.com/aplayer/secretbase.jpg'
+    }"
+  /> -->
 </template>
 
 <script>
+// import Aplayer from 'vue-aplayer'
 export default {
-  name: 'PlayerBtn'
+  name: 'PlayerBtn',
+  components: {
+    // Aplayer
+  }
 }
 </script>
 
@@ -14,7 +31,15 @@ export default {
   width: 100vw;
   height: 80px;
   bottom: 0;
-  background-color: transparent;
+  background-color: #ccc;
   z-index: 99;
+  .play-music {
+    width: 80%;
+    margin: 10px auto;
+    audio {
+      width: 100%;
+      background-color: transparent;
+    }
+  }
 }
 </style>

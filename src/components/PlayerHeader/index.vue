@@ -47,6 +47,7 @@
           placeholder="请输入内容"
           clearable
           prefix-icon="el-icon-search"
+          @change="toSearch"
         ></el-input>
       </li>
     </ul>
@@ -54,16 +55,30 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { getCurrentInstance, reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
   name: 'PlayerHeader',
   setup () {
     const state = reactive({
       searchInput: '',
-      currentIndex: 0
+      currentIndex: 0,
+      searchData: []
     })
+    const router = useRouter()
+    const { ctx } = getCurrentInstance()
+    const toSearch = async () => {
+      if (state.searchInput.trim() !== '') {
+        router.push({ path: '/SearchPage', query: { keywords: state.searchInput, type: 1 } })
+        state.searchInput = ''
+      } else {
+        state.searchInput = ''
+        return
+      }
+    }
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      toSearch
     }
   }
 }
