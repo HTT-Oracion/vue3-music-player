@@ -1,5 +1,14 @@
 <template>
   <header class="clearfix">
+    <div class="home" @click="home">
+      <i class="el-icon-house"></i>
+    </div>
+    <div class="back" @click="back">
+      <i class="el-icon-arrow-left"></i>
+    </div>
+    <div class="go" @click="go">
+      <i class="el-icon-arrow-right"></i>
+    </div>
     <ul>
       <router-link to="/RecomPage">
         <li
@@ -65,6 +74,20 @@ export default {
       currentIndex: 0,
       searchData: []
     })
+
+    //返回首页
+    const home = () => {
+      router.push('/')
+    }
+    //后退
+    const back = () => {
+      router.back()
+    }
+
+    //前进
+    const go = () => {
+      router.go(-1)
+    }
     const router = useRouter()
     const { ctx } = getCurrentInstance()
     const toSearch = async () => {
@@ -78,7 +101,10 @@ export default {
     }
     return {
       ...toRefs(state),
-      toSearch
+      toSearch,
+      go,
+      back,
+      home
     }
   }
 }
@@ -86,11 +112,40 @@ export default {
 
 <style lang="less" scoped>
 header {
+  position: relative;
   width: 100vw;
   height: 60px;
   background-color: #333;
   color: #fff;
   box-sizing: border-box;
+  .back,
+  .go,
+  .home {
+    position: absolute;
+    top: 20px;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+  .back:hover,
+  .go:hover,
+  .home:hover {
+    background-color: #444;
+  }
+  .home {
+    left: 160px;
+  }
+  .back {
+    left: 200px;
+  }
+  .go {
+    left: 240px;
+  }
+
   ul {
     width: 1400px;
     height: 60px;

@@ -86,8 +86,7 @@
 
 <script>
 import { getCurrentInstance, onMounted, reactive, toRefs } from 'vue'
-// import { toList } from '@/methods'
-import { useRouter } from 'vue-router'
+import { toListDetail } from '@/methods'
 export default {
   name: 'Recommend',
   setup () {
@@ -98,14 +97,10 @@ export default {
       recommendMvs: [],
       listIndex: 999
     })
-    const router = useRouter()
     const { ctx } = getCurrentInstance()
     //前往歌单
     const tolist = (id) => {
-      // const data = toList(id)
-      // console.log(data);
-      router.push({ path: '/ListDetail', query: { id } })
-      // router.push('/ListDetail')
+      toListDetail(id)
     }
     const toMv = (id) => {
 

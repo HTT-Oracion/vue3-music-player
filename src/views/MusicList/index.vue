@@ -1,6 +1,6 @@
 <template>
   <!-- banner -->
-  <div class="music-banner"></div>
+  <!-- <div class="music-banner"></div>  -->
   <!-- 分类tag -->
   <div class="shorttag-list">
     <!-- 所有分类的card -->
@@ -40,7 +40,7 @@
       <span class="list-name">{{ item.name }}</span>
       <span class="list-playcount">
         <i class="el-icon-caret-right"></i>
-        {{ item.playCount }}
+        {{ format(item.playCount) }}
       </span>
       <div class="play-btn" v-if="index === currentListIndex">
         <i class="el-icon-caret-right"></i>
@@ -63,10 +63,13 @@
 <script>
 import { getCurrentInstance, onMounted, reactive, toRefs, watch } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { formatCount } from '@/methods'
 export default {
   name: 'MusicList',
   setup () {
     const store = useStore()
+    const router = useRouter()
     const shortTagList = store.state.shortTagList
     const { ctx } = getCurrentInstance()
     const state = reactive({
@@ -92,13 +95,16 @@ export default {
     const hideList = () => {
       state.currentListIndex = 999
     }
+    const format = (number) => {
+      return formatCount(number)
+    }
     //切换分类
     const changeCat = (cat) => {
       state.cat = cat
       console.log(state.cat);
     }
     const toList = (id) => {
-
+      router.push({ path: '/ListDetail', query: { id } })
     }
     //改变offset
     // const getOffset = () => {
@@ -135,6 +141,7 @@ export default {
       })
     return {
       ...toRefs(state),
+      format,
       changeCat,
       shortTagList,
       showAllTags,

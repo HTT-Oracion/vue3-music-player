@@ -47,6 +47,11 @@ const routes = [
     path: '/ListDetail',
     name: 'ListDetail',
     component: () => import('@/components/PlayerContent/ListDetail')
+  },
+  {
+    path: '/ArtistDetail',
+    name: 'ArtistDetail',
+    component: () => import('@/components/Artists/ArtistDetail')
   }
 ]
 
