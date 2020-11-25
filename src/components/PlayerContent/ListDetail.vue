@@ -214,7 +214,7 @@ export default {
     span {
       display: inline-block;
       margin: 0 5px;
-      width: 50px;
+      padding: 3px;
       height: 20px;
       line-height: 20px;
       text-align: center;
@@ -232,6 +232,8 @@ export default {
   .list-desc {
     font-size: 14px;
     max-width: 400px;
+    padding: 5px;
+    letter-spacing: 1px;
     margin-top: 10px;
   }
 }
